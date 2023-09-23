@@ -1,4 +1,4 @@
-import { ProductCard } from './components/Body/components/ProductCard'
+import { ProductList } from './components/Body/components/ProductList'
 import { IProduct } from './types/Product'
 import { useGoods } from './hook/useGoods'
 
@@ -17,7 +17,7 @@ function App() {
       <ul className={style.list_product} >        
           {data ? (data.map((item: IProduct)=>(
             <li key={item.id} >
-              <ProductCard product ={item} />
+              <ProductList product ={item} />
             </li>
           ))): null
           }

@@ -9,8 +9,9 @@ $text-second-color-card: #ffce00;
     width: 320px;
     height: 420px;
     background: $card-background;
-    border-radius: 20px;
     overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 3px 8px 20px 0px rgba(0, 0, 0, 0.7);
     &::before{
         content: '';
         position: absolute;
@@ -28,7 +29,7 @@ $text-second-color-card: #ffce00;
         transform: skewY(390deg) !important;
     }
     &::after{
-        content:'CORSAIR';
+        content:'';
         position: absolute;
         bottom: 0;
         left: 0;
@@ -51,9 +52,7 @@ $text-second-color-card: #ffce00;
         }
     }
     &:hover{
-        .card_product img{
-            max-width: 35%;
-        }
+        
         .card_infos .buy{
             top: 10px;
             opacity: 1;
@@ -73,11 +72,7 @@ $text-second-color-card: #ffce00;
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 1px;
-            text-overflow: ellipsis;
-
-  /* Нужно, чтобы это заработало */
-  overflow: hidden;
-  white-space: nowrap;
+    
         }
         & .price{
             font-size: 24px;

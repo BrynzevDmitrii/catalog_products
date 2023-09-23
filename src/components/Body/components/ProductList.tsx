@@ -1,25 +1,26 @@
 import { FunctionComponent } from "react";
 import { IProduct } from "../../../types/Product";
 
-import style from './ProductCard.module.scss'
+import style from './ProductList.module.scss'
+import { Link } from "react-router-dom";
 
 
 interface ProductCardProps {
     product: IProduct
 }
  
-export const ProductCard: FunctionComponent<ProductCardProps> = ({product}) => {
+export const ProductList: FunctionComponent<ProductCardProps> = ({product}) => {
     return ( 
     
          <div className={style.card}>
             <div className={style.card_product} >
-            <img src={product.image} alt="juihgui" />
+            <img src={product.image} alt="product" />
     
         </div>
         <div className={style.card_infos}>
             <h3 className={style.card_title}>{product.title}</h3>
             <h2 className={style.price}>{product.price}</h2>
-            <a href="#" className={style.buy}>Buy Now</a>
+            <button className={style.buy}><Link to={`products/${product.id}`}>Buy Now</Link></button>
         </div>
         
     </div> 
