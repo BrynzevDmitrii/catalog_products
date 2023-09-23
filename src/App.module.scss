@@ -1,0 +1,14 @@
+.wrapper {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.list_product {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6vw;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding-top: 70px;
+}
