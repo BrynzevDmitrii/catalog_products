@@ -1,14 +1,22 @@
-/* eslint-disable no-mixed-spaces-and-tabs */
-import { FunctionComponent } from "react";
+import { FunctionComponent} from "react";
 
-import style from "./Product.module.scss";
+
 import { useParams } from "react-router-dom";
 import { useProduct } from "../../../../hook/useProduct";
+import { Modal } from "../Modal/Modal";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hook";
+import { setActiveModal } from "../../../../redux/modalSlice/modalSlice";
+
+import style from "./Product.module.scss";
+
 
 export const Product: FunctionComponent = () => {
-  const param = useParams();
+  const isActiveModal = useAppSelector((state)=>state.modalSlice.isActiveModal)
+  const dispatch = useAppDispatch()
+ 
+  const param = useParams<string>();
   const { data, isLoading } = useProduct(Number(param.productId));
-  console.log(data);
+
 
   if (isLoading) return <h1>...Loading ...</h1>;
 
@@ -17,7 +25,7 @@ export const Product: FunctionComponent = () => {
       {data ? (
         <div className={style.wrapper}>
             <div className={style.product_container}>
-        <div className={style.card}>
+        <div className={style.card} onClick={()=>dispatch(setActiveModal())}>
             <img src={data.image} alt="product" />     
         </div> 
         </div>
@@ -31,12 +39,9 @@ export const Product: FunctionComponent = () => {
             <button className={style.cart_btn}>BUY</button>
         
         </div>
-        <div className={style.modal}>		
-	      	<div className={style.modal_wrap}>	
-				<img src="https://assets.codepen.io/1462889/sl3.jpg" alt="" />	
-	      		<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>	          		
-	      	</div>			          		
-      	</div>	
+        <Modal isActivePopup={isActiveModal}>
+          <img src={data.image} alt="product_increased" />
+          </Modal>	
         </div>
       ) : null}
     </>
