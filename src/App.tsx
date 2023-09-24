@@ -1,8 +1,9 @@
-import { ProductList } from './components/Body/components/ProductList'
+import { ProductList } from './components/Body/components/ProductList/ProductList'
 import { IProduct } from './types/Product'
 import { useGoods } from './hook/useGoods'
 
 import style from './App.module.scss'
+import { Header } from './components/Header/Header'
 
 
 function App() {
@@ -14,6 +15,10 @@ function App() {
 
   return (
     <div className={style.wrapper}>
+      <div>
+      <Header />
+      </div>
+      
       <ul className={style.list_product} >        
           {data ? (data.map((item: IProduct)=>(
             <li key={item.id} >

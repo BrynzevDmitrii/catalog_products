@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { IProduct } from "../../../types/Product";
+import { IProduct } from "../../../../types/Product";
 
 import style from './ProductList.module.scss'
 import { Link } from "react-router-dom";
@@ -11,8 +11,8 @@ interface ProductCardProps {
  
 export const ProductList: FunctionComponent<ProductCardProps> = ({product}) => {
     return ( 
-    
-         <div className={style.card}>
+    <>
+    <div className={style.card}>
             <div className={style.card_product} >
             <img src={product.image} alt="product" />
     
@@ -24,6 +24,8 @@ export const ProductList: FunctionComponent<ProductCardProps> = ({product}) => {
         </div>
         
     </div> 
+    </>
+         
     );
 }
  

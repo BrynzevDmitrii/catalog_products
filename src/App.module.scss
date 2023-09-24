@@ -6,9 +6,10 @@
 .list_product {
     list-style: none;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 6vw;
     max-width: 1280px;
     margin: 0 auto;
-    padding-top: 70px;
+    padding-top: 30vh;
 }
