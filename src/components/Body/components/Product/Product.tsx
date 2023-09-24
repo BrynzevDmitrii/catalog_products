@@ -9,7 +9,6 @@ import { setActiveModal } from "../../../../redux/modalSlice/modalSlice";
 
 import style from "./Product.module.scss";
 
-
 export const Product: FunctionComponent = () => {
   const isActiveModal = useAppSelector((state)=>state.modalSlice.isActiveModal)
   const dispatch = useAppDispatch()
