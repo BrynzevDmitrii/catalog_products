@@ -1,6 +1,6 @@
 import { ProductList } from './components/Body/components/ProductList/ProductList'
 import { IProduct } from './types/Product'
-import { useGoods } from './hook/useGoods'
+import { useProducts } from './hook/useProducts'
 
 import style from './App.module.scss'
 import { Header } from './components/Header/Header'
@@ -8,8 +8,7 @@ import { Header } from './components/Header/Header'
 
 function App() {
   
-
-  const {data, isLoading} = useGoods()
+  const {data, isLoading} = useProducts()
 
   if(isLoading) return <h1>...Loading ...</h1>
 
