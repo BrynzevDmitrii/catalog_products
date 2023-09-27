@@ -7,7 +7,8 @@ export const GoodsService = {
     },
 
     getById: async (id:number)=>{
-        return axios.get<IProduct>(`https://fakestoreapi.com/products/${id}`)
+        return (await axios.get<IProduct>(`https://fakestoreapi.com/products/${id}`)).data
+        
     },
 
     postCreate:async (data?:ICreateProduct)=>{

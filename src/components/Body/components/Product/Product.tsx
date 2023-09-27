@@ -34,8 +34,8 @@ export const Product: FunctionComponent = () => {
         <h1 className={style.title}>{data.title}</h1>
         <div className={style.decript}>{data.description}</div>
             <span className={style.price}><p>Price:</p>{data.price}$</span>
-            <span className={style.count}><p>Caunt:</p>{data.rating.count}</span>
-            <span className={style.rating}><p>Rating:</p>{data.rating.rate}</span>
+            <span className={style.count}><p>Caunt:</p>{data.rating?.count}</span>
+            <span className={style.rating}><p>Rating:</p>{data.rating?.rate}</span>
 
             <button className={style.cart_btn}>BUY</button>
         

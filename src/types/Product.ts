@@ -3,14 +3,14 @@ export interface IProduct {
     title: string
     price: number
     category: string
-    description: string
-    image: string
-    rating:IRating
+    description?: string
+    image?: string
+    rating?:IRating
 }
 
 export interface IRating {
-    rate: number
-    count: number
+    rate?: number
+    count?: number
 }
 
 export interface ICreateProduct {
