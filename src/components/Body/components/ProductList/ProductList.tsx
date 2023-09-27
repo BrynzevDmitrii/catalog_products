@@ -20,7 +20,7 @@ export const ProductList: FunctionComponent<ProductCardProps> = ({product}) => {
         <div className={style.card_infos}>
             <h3 className={style.card_title}>{product.title}</h3>
             <h2 className={style.price}>{product.price}</h2>
-            <button className={style.buy}><Link to={`products/${product.id}`}>Buy Now</Link></button>
+            <button className={style.buy} ><Link to={`products/${product.id}`}>More</Link></button>
         </div>
         
     </div> 

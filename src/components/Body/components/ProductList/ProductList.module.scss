@@ -94,6 +94,9 @@ $text-second-color-card: #ffce00;
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: 0.5s;
+            a{
+                text-decoration: none;
+            }
         }
     }
 }

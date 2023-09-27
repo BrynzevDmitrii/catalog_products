@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from "../../../../redux/hook";
 import { setActiveModal } from "../../../../redux/modalSlice/modalSlice";
 
 import style from "./Product.module.scss";
+import { Header } from "../../../Header/Header";
 
 export const Product: FunctionComponent = () => {
   const isActiveModal = useAppSelector((state)=>state.modalSlice.isActiveModal)
@@ -21,6 +22,7 @@ export const Product: FunctionComponent = () => {
 
   return (
     <>
+    <Header />
       {data ? (
         <div className={style.wrapper}>
             <div className={style.product_container}>

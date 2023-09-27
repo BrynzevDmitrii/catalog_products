@@ -1,27 +1,27 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useEffect } from "react";
 import style from './Login.module.scss'
 import clsx from "clsx";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
-import { setIsLogin } from "../../redux/loginSlice/loginSlice";
+import { setIsAuth, setIsLogin } from "../../redux/loginSlice/loginSlice";
 import { useForm } from "react-hook-form";
 import { useToken } from "../../hook/useToken";
 import {validateLogin} from "../../validations/LoginValidation";
 import { yupResolver } from '@hookform/resolvers/yup';
 import {  Navigate } from "react-router-dom";
-import { useGetCookie } from "../../hook/useGetCookie";
 
 interface LoginProps {
     
 }
  
 export const Login: FunctionComponent<LoginProps> = () => {
-    const isSelect = useAppSelector((state)=>state.loginSlice.isLogin)
+    const {isLogin, isAuth} = useAppSelector((state)=>state.loginSlice)
     const dispatch = useAppDispatch()
 
     const { register , handleSubmit, formState } = useForm({resolver: yupResolver(validateLogin)})
 
     const {errors} = formState
     
+    useEffect(()=>{dispatch(setIsAuth()),[]})
 
     const {mutate} = useToken()
 
@@ -29,23 +29,20 @@ export const Login: FunctionComponent<LoginProps> = () => {
       mutate() 
       document.cookie=`login = ${data.login}`  
     }
-
-    const isTolken=useGetCookie('token')
-
-    
-    if(isTolken)return<Navigate to={'/'} />
+  
+    if(isAuth)return<Navigate to={'/'} />
 
     return ( 
 
-        <section className={clsx(style.wrapper,(isSelect&&style.active)) }>
+        <section className={clsx(style.wrapper,(isLogin&&style.active)) }>
 
 
         <div className={clsx(style.form, style.signup)}>
           <header onClick={()=>dispatch(setIsLogin())}>Signup</header>
-          <form action="POST">
-            <input type="text" placeholder="Full name" required />
-            <input type="text" placeholder="Email address" required />
-            <input type="password" placeholder="Password" required />
+          <form className={style.form} action="POST">
+            <input className={style.input} type="text" placeholder="Full name" required />
+            <input className={style.input} type="text" placeholder="Email address" required />
+            <input className={style.input} type="password" placeholder="Password" required />
             <div className={style.checkbox}>
               <input type="checkbox" id="signupCheck" />
               <label htmlFor="signupCheck">I accept all terms & conditions</label>

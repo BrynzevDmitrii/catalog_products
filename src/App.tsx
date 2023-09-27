@@ -9,16 +9,23 @@ import { useAppDispatch, useAppSelector } from './redux/hook'
 import { setIsAuth } from './redux/loginSlice/loginSlice'
 import { useEffect } from 'react'
 import { AddProductCart } from './components/Body/components/AddProductCart/AddProductCart'
+import { setProducts } from './redux/productsSlice/productsSlice'
 
 
 function App() {
   const dispatch = useAppDispatch()
   const isAuth = useAppSelector(state=>state.loginSlice.isAuth)
+  const products = useAppSelector(state=>state.productsSlice.products)
+  const userUploadProduct = useAppSelector(state=>state.productsSlice.userUploadProduct)
   const isActive = useAppSelector(state=>state.modalSlice.isActiveModal)
 
-  useEffect(()=>{dispatch(setIsAuth())},[dispatch])
+  useEffect(()=>{
+    dispatch(setIsAuth())
+    dispatch(setProducts())
+  },[dispatch,userUploadProduct])
+  
 
-  const {data, isLoading} = useProducts()
+  const { isLoading } = useProducts()
 
   if(!isAuth) return <Navigate to={"logIn/singIn"} />
 
@@ -27,10 +34,8 @@ function App() {
   return (
     <div className={style.wrapper}>
       <Header />
-   
-
       <ul className={style.list_product} >        
-          {data ? (data.map((item: IProduct)=>(
+          {products ? (products.map((item: IProduct)=>(
             <li key={item.id} >
               <ProductList product ={item} />
             </li>

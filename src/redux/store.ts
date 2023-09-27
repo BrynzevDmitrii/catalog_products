@@ -3,11 +3,13 @@
 import { configureStore } from "@reduxjs/toolkit"
 import modalSlice  from "./modalSlice/modalSlice"
 import loginSlice from "./loginSlice/loginSlice"
+import productsSlice from "./productsSlice/productsSlice"
 
 export const store = configureStore({
     reducer: {
        modalSlice,
-       loginSlice
+       loginSlice,
+       productsSlice,
       
     },
     middleware: (getDefaultMiddleware) =>
