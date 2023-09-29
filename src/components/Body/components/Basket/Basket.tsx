@@ -9,7 +9,7 @@ interface BascetProps {}
 const Bascet: FunctionComponent<BascetProps> = () => {
     const basket = useAppSelector(state=>state.basketSlice.basketProducts)
 
-    const subTitle = +(basket.reduce((acc,num)=>acc+(num.price*num.quantity), 0)).toFixed(2)
+    const subTitle = +(basket.reduce((acc,num)=>acc+(num.price*(num.quantity||1)), 0)).toFixed(2)
     const tax = +((+subTitle*0.05).toFixed(2))
     const shipping = 15
     const total = +(subTitle+tax+shipping).toFixed(2)
@@ -46,7 +46,7 @@ const Bascet: FunctionComponent<BascetProps> = () => {
             <div className={style.product_removal}>
               <button className={style.remove_product}>Remove</button>
             </div>
-            <div className={style.product_line_price}>{product.price*product.quantity}</div>
+            <div className={style.product_line_price}>{product.price*(product.quantity||1)}</div>
           </div> )
           
           })
