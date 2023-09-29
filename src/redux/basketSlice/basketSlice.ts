@@ -12,11 +12,11 @@ const basketSlice = createSlice({
             if(cashBasketProducts){
                 const cashBasket = [... JSON.parse(cashBasketProducts)]
                 if(cashBasket .length!== 0){
-                    state.basketProducts  = [... cashBasket]
+                    state.basketProducts  = []
                 }
-                return
+                state.basketProducts  = [... cashBasket]
             } 
-            return
+            return 
         }
 ,
 
@@ -26,7 +26,7 @@ const basketSlice = createSlice({
             if(cashBasketProducts){
                 const cashBasket = [... JSON.parse(cashBasketProducts)]
         
-                if(cashBasket .length!== 0){
+                if(cashBasket.length!== 0){
                     const cashProducts = window.localStorage.getItem('products')
                     const cashUploadList =  window.localStorage.getItem('newProductsList')
                     
@@ -69,7 +69,24 @@ const basketSlice = createSlice({
                         
                     
                 }
-                return
+                else if (cashBasket.length === 0){
+                    const cashProducts = window.localStorage.getItem('products')
+                    const cashUploadList =  window.localStorage.getItem('newProductsList')
+
+                    if(cashUploadList){                        
+                        const product = [...JSON.parse(cashUploadList)].filter(item=>item.id === payload.payload)
+                        product[0].quantity = 1
+                
+                        window.localStorage.setItem('basket', JSON.stringify([product[0]]))
+                } else if (cashProducts){
+                    const product = [...JSON.parse(cashProducts)].filter(item=>item.id === payload.payload)
+                       
+                    product[0].quantity = 1
+                
+                    window.localStorage.setItem('basket', JSON.stringify([product[0]]))
+                }
+                
+                
             }
         //если корзина в localstoreg отсутствует
             else if(!cashBasketProducts){
@@ -89,6 +106,19 @@ const basketSlice = createSlice({
                 window.localStorage.setItem('basket', JSON.stringify([product[0]]))
             }
         }
+    }},
+     removeProduct(_, payload){
+        const cashBasketProducts = window.localStorage.getItem('basket')
+        if(cashBasketProducts){
+                const cashBasket = [... JSON.parse(cashBasketProducts)]          
+                const product = cashBasket.filter(item=>item.id === payload.payload)
+                console.log(product);
+                
+                const newBasketList = cashBasket.filter(item=>item.id!==product[0].id)
+                
+                window.localStorage.setItem('basket', JSON.stringify(newBasketList))    
+
+     }
     }
 }
 }
@@ -96,7 +126,8 @@ const basketSlice = createSlice({
 
    export const {
         addProductBasket,
-        addNewProductBasket
+        addNewProductBasket,
+        removeProduct,
     } = basketSlice.actions
 
     export  default basketSlice.reducer

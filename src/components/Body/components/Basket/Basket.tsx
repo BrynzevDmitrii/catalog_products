@@ -2,12 +2,19 @@ import { FunctionComponent } from "react";
 import style from "./Basket.module.scss";
 import clsx from "clsx";
 import { Header } from "../../../Header/Header";
-import { useAppSelector } from "../../../../redux/hook";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hook";
+import { addProductBasket, removeProduct } from "../../../../redux/basketSlice/basketSlice";
 
 interface BascetProps {}
 
 const Bascet: FunctionComponent<BascetProps> = () => {
     const basket = useAppSelector(state=>state.basketSlice.basketProducts)
+    const dispatch = useAppDispatch()
+
+    const removeGoods=(id:number)=>{
+      dispatch(removeProduct(id))
+      dispatch(addProductBasket())
+    }
 
     const subTitle = +(basket.reduce((acc,num)=>acc+(num.price*(num.quantity||1)), 0)).toFixed(2)
     const tax = +((+subTitle*0.05).toFixed(2))
@@ -44,7 +51,7 @@ const Bascet: FunctionComponent<BascetProps> = () => {
               <input type="number"  value={product.quantity} min="1" />
             </div>
             <div className={style.product_removal}>
-              <button className={style.remove_product}>Remove</button>
+              <button onClick={()=>removeGoods(product.id)} className={style.remove_product}>Remove</button>
             </div>
             <div className={style.product_line_price}>{product.price*(product.quantity||1)}</div>
           </div> )
