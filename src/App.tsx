@@ -10,6 +10,7 @@ import { setIsAuth } from './redux/loginSlice/loginSlice'
 import { useEffect } from 'react'
 import { AddProductCart } from './components/Body/components/AddProductCart/AddProductCart'
 import { setProducts } from './redux/productsSlice/productsSlice'
+import { PageLoader } from './components/Loaders/PageLoader/PageLoader'
 
 
 
@@ -30,7 +31,7 @@ function App() {
 
   if(!isAuth) return <Navigate to={"logIn/singIn"} />
 
-  if(isLoading) return <h1>...Loading ...</h1>
+  if(isLoading) return <PageLoader />
 
   return (
     <div className={style.wrapper}>

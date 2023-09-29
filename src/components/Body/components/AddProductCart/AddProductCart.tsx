@@ -9,6 +9,7 @@ import { addProductValidation } from "../../../../validations/addProductValidati
 import { ICreateProduct } from "../../../../types/Product";
 import { useAddProduct } from "../../../../hook/useAddProduct";
 import { setNewProduct } from "../../../../redux/productsSlice/productsSlice";
+import { PageLoader } from "../../../Loaders/PageLoader/PageLoader";
 interface AddProductCartProps {
   isActive: boolean;
 }
@@ -41,7 +42,7 @@ export const AddProductCart: FunctionComponent<AddProductCartProps> = (
     dispatch(setActiveModal())
   }
 
-  if(isLoading) return<h1>Loading...</h1>
+  if(isLoading) return<PageLoader />
 
   return (
     <>

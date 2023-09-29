@@ -5,6 +5,7 @@ import { RouterProvider } from "react-router-dom";
 import { router } from './routers/Routers';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
+import MainLoading from './components/Loaders/MainLoader/MainLoading';
 
 
 const quryClient = new QueryClient()
@@ -12,7 +13,7 @@ const quryClient = new QueryClient()
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
   <QueryClientProvider client = {quryClient}>
-    <RouterProvider router = {router} />
+    <RouterProvider router = {router} fallbackElement={<MainLoading />}/>
   </QueryClientProvider>
   </Provider>
 )

@@ -10,6 +10,7 @@ import { setActiveModal } from "../../../../redux/modalSlice/modalSlice";
 import style from "./Product.module.scss";
 import { Header } from "../../../Header/Header";
 import { addNewProductBasket, addProductBasket } from "../../../../redux/basketSlice/basketSlice";
+import { PageLoader } from "../../../Loaders/PageLoader/PageLoader";
 
 export const Product: FunctionComponent = () => {
   const isActiveModal = useAppSelector((state)=>state.modalSlice.isActiveModal)
@@ -24,7 +25,7 @@ export const Product: FunctionComponent = () => {
   }
 
 
-  if (isLoading) return <h1>...Loading ...</h1>;
+  if (isLoading) return <PageLoader />;
 
   return (
     <>
