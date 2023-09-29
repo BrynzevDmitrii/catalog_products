@@ -5,14 +5,18 @@ export const useProduct = (id: number)=>{
 return useQuery(['product'], ()=> GoodsService.getById(id),
 {
   select:(data) => {
-    if(data === '')
+    if(data )
     {
     let uploadListProduct = []
     const cashUploadList =  window.localStorage.getItem('newProductsList')
-    uploadListProduct = [... JSON.parse(cashUploadList)] 
-    const cashProduct = uploadListProduct.filter(item=>item.id === id)
+    if(cashUploadList){
+      uploadListProduct = [... JSON.parse(cashUploadList)] 
+      const cashProduct = uploadListProduct.filter(item=>item.id === id)
 
     return cashProduct[0];
+    }
+    
+    
     }
   return data
   }
