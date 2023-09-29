@@ -12,17 +12,18 @@ import { AddProductCart } from './components/Body/components/AddProductCart/AddP
 import { setProducts } from './redux/productsSlice/productsSlice'
 
 
+
 function App() {
   const dispatch = useAppDispatch()
   const isAuth = useAppSelector(state=>state.loginSlice.isAuth)
   const products = useAppSelector(state=>state.productsSlice.products)
-  const userUploadProduct = useAppSelector(state=>state.productsSlice.userUploadProduct)
+  const isUploadProducts = useAppSelector(state=>state.productsSlice.isUploadProducts)
   const isActive = useAppSelector(state=>state.modalSlice.isActiveModal)
 
   useEffect(()=>{
     dispatch(setIsAuth())
     dispatch(setProducts())
-  },[dispatch,userUploadProduct])
+  },[dispatch,isUploadProducts])
   
 
   const { isLoading } = useProducts()

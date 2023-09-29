@@ -1,7 +1,7 @@
 import * as yup from 'yup'
 
 export const addProductValidation = yup.object().shape({
-  id:yup.number(),
+    id:yup.number(),
     title:yup.string().required('Введте название товара').
     min(3,'Название товара должено содержать не менее 3 символов').
     max(100,'Название товара должено содержать не более 100 символов'),

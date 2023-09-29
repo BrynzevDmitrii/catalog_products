@@ -5,7 +5,7 @@ const productsSlice = createSlice({
     name: 'productsSlice',
     initialState: {
       products:null as unknown as IProduct[],
-      userUploadProduct: false
+      isUploadProducts: false
     } ,
     reducers: {
         setProducts(state) {
@@ -13,11 +13,11 @@ const productsSlice = createSlice({
             const cashUploadList =  window.localStorage.getItem('newProductsList')
             if(cashUploadList){
               state.products = JSON.parse(cashUploadList)
-              state.userUploadProduct = false
+              state.isUploadProducts = false
             }else
             if(cashProducts){
               state.products = JSON.parse(cashProducts)
-              state.userUploadProduct = false
+              state.isUploadProducts = false
             }
             
         },
@@ -30,7 +30,7 @@ const productsSlice = createSlice({
               uploadListProduct = [... JSON.parse(cashUploadList)]          
               uploadListProduct.push(payload.payload)   
               window.localStorage.setItem('newProductsList', JSON.stringify(uploadListProduct) )
-              state.userUploadProduct = true
+              state.isUploadProducts = true
               
             } 
             else if(cashProducts)
@@ -38,7 +38,7 @@ const productsSlice = createSlice({
               uploadListProduct = [... JSON.parse(cashProducts)]
               uploadListProduct.push(payload.payload)   
               window.localStorage.setItem('newProductsList', JSON.stringify(uploadListProduct) )
-              state.userUploadProduct = true
+              state.isUploadProducts = true
               
           }
 

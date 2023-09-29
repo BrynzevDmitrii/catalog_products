@@ -1,4 +1,4 @@
-import { FunctionComponent} from "react";
+import { FunctionComponent } from "react";
 
 
 import { useParams } from "react-router-dom";
@@ -9,6 +9,7 @@ import { setActiveModal } from "../../../../redux/modalSlice/modalSlice";
 
 import style from "./Product.module.scss";
 import { Header } from "../../../Header/Header";
+import { addNewProductBasket, addProductBasket } from "../../../../redux/basketSlice/basketSlice";
 
 export const Product: FunctionComponent = () => {
   const isActiveModal = useAppSelector((state)=>state.modalSlice.isActiveModal)
@@ -16,6 +17,11 @@ export const Product: FunctionComponent = () => {
  
   const param = useParams<string>();
   const { data, isLoading } = useProduct(Number(param.productId));
+
+  const addBasket=(id: string)=>{
+    dispatch(addNewProductBasket(id))
+    dispatch(addProductBasket())
+  }
 
 
   if (isLoading) return <h1>...Loading ...</h1>;
@@ -37,7 +43,7 @@ export const Product: FunctionComponent = () => {
             <span className={style.count}><p>Caunt:</p>{data.rating?.count}</span>
             <span className={style.rating}><p>Rating:</p>{data.rating?.rate}</span>
 
-            <button className={style.cart_btn}>BUY</button>
+            <button onClick={()=>addBasket(data.id)} className={style.cart_btn}>BUY</button>
         
         </div>
         <Modal isActivePopup={isActiveModal}>
